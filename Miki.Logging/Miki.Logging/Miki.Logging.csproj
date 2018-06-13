@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Miki logging library</Description>
+    <Copyright>Mike Veldsink</Copyright>
+    <PackageProjectUrl>https://github.com/mikibot/miki.logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mikibot/miki.logging</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>logging, miki</PackageTags>
+    <PackageReleaseNotes>Initial</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

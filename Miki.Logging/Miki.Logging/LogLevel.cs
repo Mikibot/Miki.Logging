@@ -6,11 +6,11 @@ namespace Miki.Logging
 {
 	public enum LogLevel
 	{
-		None,
+		Verbose,
+		Debug,
 		Information,
 		Warning,
 		Error,
-		Debug,
-		Verbose
+		None,
 	}
 }

@@ -10,6 +10,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>logging, miki</PackageTags>
     <PackageReleaseNotes>Initial</PackageReleaseNotes>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
 </Project>

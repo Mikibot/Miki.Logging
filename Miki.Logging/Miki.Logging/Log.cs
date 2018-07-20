@@ -11,12 +11,12 @@ namespace Miki.Logging
 		public static LogTheme Theme = new LogTheme();
 
 		/// <summary>
-		/// Display a [msg] message.
+		/// Display a debug message
 		/// </summary>
 		/// <param name="message">information about the action</param>
-		public static void Message(string message)
+		public static void Debug(string message)
 		{
-			WriteToLog("[info] " + message, LogLevel.Information);
+			WriteToLog("[dbug] " + message, LogLevel.Debug);
 		}
 
 		/// <summary>
@@ -30,6 +30,24 @@ namespace Miki.Logging
 		public static void Error(Exception exception)
 		{
 			Error("[crit]" + exception.ToString());
+		}
+
+		/// <summary>
+		/// Display a standard message.
+		/// </summary>
+		/// <param name="message">information about the action</param>
+		public static void Message(string message)
+		{
+			WriteToLog("[info] " + message, LogLevel.Information);
+		}
+
+		/// <summary>
+		/// Display a trace message
+		/// </summary>
+		/// <param name="message">information about the action</param>
+		public static void Trace(string message)
+		{
+			WriteToLog("[trce] " + message, LogLevel.Verbose);
 		}
 
 		/// <summary>
@@ -57,7 +75,7 @@ namespace Miki.Logging
 			Console.ForegroundColor = color.Foreground ?? ConsoleColor.White;
 			Console.BackgroundColor = color.Background ?? ConsoleColor.Black;
 
-			OnLog?.Invoke(message, LogLevel.Information);
+			OnLog?.Invoke(message, level);
 
 			Console.ResetColor();
 		}

@@ -10,7 +10,8 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>logging, miki</PackageTags>
     <PackageReleaseNotes>Initial</PackageReleaseNotes>
-    <Version>1.1.3</Version>
+    <Version>1.2.0</Version>
+    <Authors>Velddev</Authors>
   </PropertyGroup>
 
 </Project>

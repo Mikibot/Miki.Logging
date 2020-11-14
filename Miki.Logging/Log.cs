@@ -12,6 +12,13 @@ namespace Miki.Logging
     public delegate void LogEvent(string message, LogLevel level);
 
     /// <summary>
+    /// Log event delegate, will handle log exceptions.
+    /// </summary>
+    /// <param name="exception">The exception being thrown</param>
+    /// <param name="level">The level of the exception</param>
+    public delegate void LogException(Exception exception, LogLevel level);
+
+    /// <summary>
     /// Creates your log header whenever a new message has been sent.
     /// </summary>
     /// <param name="level">The content level depth</param>
@@ -21,12 +28,14 @@ namespace Miki.Logging
 	public static class Log
 	{
 		internal static event LogEvent OnLog;
+        internal static event LogException OnException;
 
         internal static LogHeaderFactory _createHeader = (lv) => $"[{lv.ToString()}]";
 
         internal static bool _locked;
 
-        private static LogTheme Theme = new LogTheme();
+        internal static LogTheme _theme = new LogTheme();
+
         /// <summary>
         /// Display a debug message
         /// </summary>
@@ -46,6 +55,7 @@ namespace Miki.Logging
         }
         public static void Error(Exception exception)
 		{
+            OnException?.Invoke(exception, LogLevel.Error);
 			Error(exception.ToString());
 		}
 
@@ -78,10 +88,13 @@ namespace Miki.Logging
 
 		private static void WriteToLog(string message, LogLevel level)
 		{
-			LogColor color = Theme.GetColor(level);
+			LogColor color = _theme?.GetColor(level) 
+                ?? new LogColor();
 
-			Console.ForegroundColor = color.Foreground ?? ConsoleColor.White;
-			Console.BackgroundColor = color.Background ?? ConsoleColor.Black;
+			Console.ForegroundColor = color.Foreground 
+                ?? ConsoleColor.White;
+			Console.BackgroundColor = color.Background 
+                ?? ConsoleColor.Black;
 
 			OnLog?.Invoke($"{_createHeader(level)} {message}", level);
 
